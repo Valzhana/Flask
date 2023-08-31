@@ -1,0 +1,29 @@
+{% extends 'base_shop.html' %}
+
+{% block title %}
+    {{ super() }} - {{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-4">
+            <h6>Летняя одежда</h6>
+            <p>Платья</p>
+            <p>Блузки</p>
+            <p>Юбки</p>
+            <p>Брюки</p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <h6>Зимняя одежда</h6>
+            <p>Куртки</p>
+            <p>Пальто</p>
+            <p>Парки</p>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <h6>Демисезонная одежда</h6>
+            <p>Плащи</p>
+            <p>Жакеты</p>
+            <p>Жилеты</p>
+        </div>
+    </div>
+{% endblock %}
