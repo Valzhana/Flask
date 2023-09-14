@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Title</title>
+</head>
+<body>
+    {% for student in students %}
+        First name: {{student.first_name}} {{student.last_surname}}<br>
+        Email: {{student.email}}<br>
+        Group: {{student.group}}<br>
+        Marks:<br>
+        {% for grade in marks %}
+          {% if student.id == grade.student_id %}
+            Subject: {{grade.subject}}<br>
+            Mark: {{grade.mark}}<br>
+          {% endif %}
+        {% endfor %}
+        <hr>
+    {% endfor %}
+</body>
+</html>
