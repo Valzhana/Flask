@@ -2,9 +2,14 @@ from datetime import datetime
 
 import databases
 import sqlalchemy as sa
+
+
 from settings import settings
 
-DATABASE_URL = settings.DATABASE_URL
+
+DATABASE_URL = "sqlite:///store.db"
+
+# DATABASE_URL = settings.DATABASE_URL
 database = databases.Database(DATABASE_URL)
 metadata = sa.MetaData()
 
@@ -40,5 +45,8 @@ orders = sa.Table(
     sa.Column("status", sa.String(64)),
 )
 
-engine = sa.create_engine(DATABASE_URL, connect_args={'check_same_thread': False})
+engine = sa.create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)
+
 metadata.create_all(engine)

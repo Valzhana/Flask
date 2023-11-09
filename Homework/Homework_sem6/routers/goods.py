@@ -1,6 +1,7 @@
 from fastapi import APIRouter
+
 from db import goods, database
-from models.goods import Goods, GoodsIn
+from Homework.Homework_sem6.app.models.goods import GoodsIn, Goods
 
 router = APIRouter()
 

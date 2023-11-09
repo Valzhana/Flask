@@ -1,19 +1,19 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
+
 from db import users, database
-from models.user import User, UserIn
+from models.user import UserIn, User
 
 router = APIRouter()
 
 
-@router.post('/fake_users/{count}')
-async def create_note(count: int):
+@router.post("/fake_users/{count}")
+async def create_fake_user(count: int):
     for i in range(count):
-        query = users.insert().values(
-            username=f'user{i}',
-            email=f'mail{i}@mail.ru',
-            password=f'password{i}')
+        query = users.insert().values(username=f'user{i}',
+                                      email=f'mail{i}@mail.ru',
+                                      password=f'password{i}')
         await database.execute(query)
-    return {'message': f'{count} fake users created'}
+    return {'message': f'{count} fake users create'}
 
 
 @router.post("/user", response_model=UserIn)
@@ -40,8 +40,6 @@ async def read_users():
 @router.get("/users/{user_id}", response_model=User)
 async def read_user(user_id: int):
     query = users.select().where(users.c.id == user_id)
-    if not query:
-        raise HTTPException(status_code=404, detail='User not found')
     return await database.fetch_one(query)
 
 

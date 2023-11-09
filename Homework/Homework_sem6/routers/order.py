@@ -2,8 +2,9 @@ import datetime
 import random
 
 from fastapi import APIRouter
-from db import goods, database, orders, users
-from models.order import Order, OrderIn
+
+from db import orders, database, users, goods
+from models.order import OrderIn, Order
 
 router = APIRouter()
 
@@ -56,5 +57,6 @@ async def read_order(order_id: int):
 @router.delete("/order/{order_id}")
 async def delete_order(order_id: int):
     query = orders.delete().where(orders.c.id == order_id)
+
     await database.execute(query)
     return {'message': 'Goods deleted'}
